@@ -1,0 +1,25 @@
+.error {
+  font-size: .75rem;
+  color: red;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.input {
+  margin: 5px;
+}
+.formLabel {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.good {
+  font-size: .75rem;
+  color: green;
+}
+
+.grey {
+  color: lightgrey;
+}
