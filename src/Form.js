@@ -1,6 +1,14 @@
 import React, {useState} from 'react'
 import './form.css'
+/*
+TODO:
+if the props show it's a reg, then start with all the password requirements in grey. Once they begin to change the password field, it starts changing the requirements to green as they are fulfilled.
+The requirements only turn red AFTER an attempted submission with requirements not met.
 
+reg should also change the fetch command on where the data is sent.
+
+If the props show a sign in, this needs to remove all the validation steps, but returns errors if the server tosses one after a failed attempt.
+*/
 
 
 function Form (props) {
