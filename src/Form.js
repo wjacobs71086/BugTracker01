@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './form.css'
 /*
 TODO:
-if the props show it's a reg, then start with all the password requirements in grey. Once they begin to change the password field, it starts changing the requirements to green as they are fulfilled.
+if the props show it's a registration, then start with all the password requirements in grey. Once they begin to change the password field, it starts changing the requirements to green as they are fulfilled.
 The requirements only turn red AFTER an attempted submission with requirements not met.
 
 reg should also change the fetch command on where the data is sent.
@@ -32,24 +32,25 @@ function Form (props) {
     
      let errorState = {}
 
-      if (!checkLowerCase.test(userPassword)) {
-        errorState = {...errorState, passwordError01: 'Must contain a lower case character'}
+      if (checkLowerCase.test(userPassword)) {
+        errorState = {...errorState, passwordError01: true}
       } 
-      if (!checkUpperCase.test(userPassword)) {
-        errorState = {...errorState, passwordError02: 'Must contain an upper case character'}
+      if (checkUpperCase.test(userPassword)) {
+        errorState = {...errorState, passwordError02: true}
       } 
-      if (!checkNumber.test(userPassword)) {
-        errorState = {...errorState, passwordError03: 'Must contain a number'}
+      if (checkNumber.test(userPassword)) {
+        errorState = {...errorState, passwordError03: true}
       } 
-      if (!checkSpecialChar.test(userPassword)) {
-        errorState = {...errorState, passwordError04: 'Must contain a special character'}
+      if (checkSpecialChar.test(userPassword)) {
+        errorState = {...errorState, passwordError04: true}
       } 
-      if (!checkLength.test(userPassword)) {
-        errorState = {...errorState, passwordError05: 'Must be over 8 characters in length'}
+      if (checkLength.test(userPassword)) {
+        errorState = {...errorState, passwordError05: true}
       }
       setErr(errorState)
 
   }
+
 
   function resetError() {
     setErr({userNameError:'', passwordError:''})
@@ -79,22 +80,16 @@ function Form (props) {
           className='input'
           onChange={(e)=> {
             setPassword(e.target.value)
-            if(attSubmit){
-              validate()
-            }
+            validate()
           }}
         />
+        
         <div>
-
-
-
-
-
-        {/* {(err.passwordError01 !== '' && attSubmit === false) ? <p className='grey'>{err.passwordError01}</p> : <p className='error'>Contains a lower case character</p>}
-        {(err.passwordError02 !== '') ? <p className='error'>{err.passwordError02}</p> : <p className='good'>Contains an upper case character</p>}
-        {(err.passwordError03 !== '') ? <p className='error'>{err.passwordError03}</p> : <p className='good'>Contains a number</p>}
-        {(err.passwordError04 !== '') ? <p className='error'>{err.passwordError04}</p> : <p className='good'>Contains a special character</p>}
-        {(err.passwordError05 !== '') ? <p className='error'>{err.passwordError05}</p> : <p className='good'>Over 8 characters in length</p>} */}
+          <p className={err.passwordError01 ? 'good' : "grey"}>Contains a lower case character</p>
+          <p className={err.passwordError02 ? 'good' : "grey"}>Contains an upper case character</p>
+          <p className={err.passwordError03 ? 'good' : "grey"}>Contains a number</p>
+          <p className={err.passwordError04 ? 'good' : "grey"}>Contains a special character</p>
+          <p className={err.passwordError05 ? 'good' : "grey"}>8 Characters long</p>
         </div>
 
         <button
