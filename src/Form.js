@@ -16,6 +16,7 @@ function Form (props) {
   let [ userName, setUserName ] = useState('')
   let [ userPassword, setPassword ] = useState('')
   let [ err, setErr ] = useState({userNameError:'', passwordError:''})
+  let [focus, setFocus] = useState(false)
   let [attSubmit, setAttSubmit] = useState(false);
 
   function validate() {
@@ -78,18 +79,24 @@ function Form (props) {
           name='password'
           autoComplete='off'
           className='input'
+          onFocus={()=> {
+            validate()
+            setFocus(true)
+          }}
           onChange={(e)=> {
             setPassword(e.target.value)
-            validate()
+            if (focus ){
+              validate()
+            }
           }}
         />
-        
-        <div>
-          <p className={err.passwordError01 ? 'good' : "grey"}>Contains a lower case character</p>
-          <p className={err.passwordError02 ? 'good' : "grey"}>Contains an upper case character</p>
-          <p className={err.passwordError03 ? 'good' : "grey"}>Contains a number</p>
-          <p className={err.passwordError04 ? 'good' : "grey"}>Contains a special character</p>
-          <p className={err.passwordError05 ? 'good' : "grey"}>8 Characters long</p>
+
+        <div className={focus ? '' : 'hidden'}>
+          <p className={(err.passwordError01) ? 'good' : "grey"}>Contains a lower case character</p>
+          <p className={(err.passwordError02) ? 'good' : "grey"}>Contains an upper case character</p>
+          <p className={(err.passwordError03) ? 'good' : "grey"}>Contains a number</p>
+          <p className={(err.passwordError04) ? 'good' : "grey"}>Contains a special character</p>
+          <p className={(err.passwordError05) ? 'good' : "grey"}>8 Characters long</p>
         </div>
 
         <button

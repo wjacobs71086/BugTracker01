@@ -24,3 +24,6 @@
   color: lightgrey;
   font-size: .75rem;
 }
+.hidden {
+  display: none;
+}
